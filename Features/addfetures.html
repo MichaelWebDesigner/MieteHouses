@@ -1,0 +1,97 @@
+<?php 
+include "../appartment/nav.php";
+include "../appartment/config.php";
+
+$totalPrice = 0;
+if(isset($_GET['id'])){
+$id = $_GET['id'] ;
+ $price ="SELECT price FROM `appartment`  WHERE  id=$id ";
+$run = mysqli_query($conn , $price);
+$row = mysqli_fetch_assoc($run);
+$apartmentPrice = $row['price'];
+$totalPrice += $apartmentPrice;
+}
+// echo $totalPrice;
+if(isset($_POST['submit'])){
+    if(isset($_POST["ps"])){
+        $ps = $_POST["ps"];
+        $totalPrice += $ps;
+    }
+    if(isset($_POST["coffee"])){
+        $coffee = $_POST["coffee"];
+        $totalPrice += $coffee;
+    }
+    if(isset($_POST["tost"])){
+        $tost = $_POST["tost"];
+        $totalPrice += $tost;
+    } if(isset($_POST["corne"])){
+        $corne = $_POST["corne"];
+        $totalPrice += $corne;
+    } if(isset($_POST["dog"])){
+        $dog = $_POST["dog"];
+        $totalPrice += $dog;
+    }
+echo $totalPrice;
+header("location: total.php?total=$totalPrice");
+}
+?>
+<html>
+    <head>
+    <link rel="stylesheet" href="addfetures.css">
+    </head>
+    <body>
+        
+         <div class="container">
+           
+<h3 class="fer"> Additional features *optional*  </h3>
+             
+             
+ <form action="" method="POST" class="kolok">   
+<div class="checkk">
+     <label for=""> 157€ </label>
+<label for=""> PlayStation 5 </label>
+   <input type="checkbox" value="3147" name="ps" aria-label="Checkbox for following text input">
+    </div>
+    <br> 
+     <div class="checkk">
+          <label for=""> 70€ </label>
+<label for=""> Coffee machine </label>
+ <input type="checkbox" value="1410" name="coffe" aria-label="Checkbox for following text input">
+           
+         </div>
+     <br>
+     <div class="checkk">
+           <label for=""> 6€ </label>
+
+<label for=""> Toster maker </label>
+           <input type="checkbox" value="252" name="tost" aria-label="Checkbox for following text input">
+         </div>
+     <br>
+     <div class="checkk">
+           <label for=""> 72€ </label>
+<label for=""> Arabic Corne </label>
+ <input type="checkbox" value="1400" name="corne" aria-label="Checkbox for following text input">
+          
+         </div>
+     <br>
+     <div class="checkk">
+                      <label for=""> 50€ </label>
+
+<label for=""> Pets supplies </label>
+         <input type="checkbox" value="1000" name="dog" aria-label="Checkbox for following text input">
+
+         </div> 
+     <br>
+
+
+
+</form>
+             
+             <div class="zorarr">
+             <a href="../Check-out/Check.html"><button name="submit" class="btn">Next</button></a>
+                 
+                 </div>
+        </div>
+
+</body>
+</html>
